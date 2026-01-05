@@ -1,20 +1,21 @@
 import React, { useState, useEffect } from 'react'
 import { setLocalStorage } from '../../utils/localStorage'
 
-const Header = ({data}) => {
+const Header = (props) => {
 
   const [userName, setUsername] = useState('')
 
   useEffect(() => {
-    if(!data){
+    if(!props.data){
       setUsername('Admin')
     } else {
-      setUsername(data.firstname)
+      setUsername(props.data.firstname)
     }
-  }, [data]) 
+  }, [props.data]) 
 
   const logOutUser = () => {
     localStorage.setItem('loggedInUser','')
+    props.changeUser('')
     window.location.reload()
   }
 
@@ -28,7 +29,5 @@ const Header = ({data}) => {
     </div>
   )
 }
-
-
 
 export default Header
